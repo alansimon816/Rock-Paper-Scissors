@@ -8,23 +8,26 @@
     </head>
 
     <body>
-        <div id="start-screen">
+        <div id="start-screen" class ="vertical-center fill">
             <p>Rock, Paper, Scissors</p>
             <button id="start-button">Start Game</button>   
         </div>
-        <!-- <label for="parent">Choose rock, paper, or scissors.</label>
-        <div class="center" id="parent">
-            <button class = "children" id="rock">
-                <img src="images/rock.png" alt="rock"/>
-            </button>
-            <button class = "children" id="paper">
-                <img src="images/paper.png" alt="paper"/>
-            </button>
-            <button class = "children" id="scissors">
-                <img src="images/scissors.png" alt="scissors"/>
-            </button>
-        </div> -->
-        <!-- <script src = "rps-gui.js"> </script>  -->
+
+        <div id ="game" class ="vertical-center fill">
+            <label id = "prompt" for="game-buttons">Choose rock, paper, or scissors.</label>
+            <div class="center" id="game-buttons">
+                <button class = "children" id="rock">
+                    <img src="images/rock.png" alt="rock"/>
+                </button>
+                <button class = "children" id="paper">
+                    <img src="images/paper.png" alt="paper"/>
+                </button>
+                <button class = "children" id="scissors">
+                    <img src="images/scissors.png" alt="scissors"/>
+                </button>
+            </div>
+        </div> 
+        <script src = "rps-gui.js"> </script>
     </body>
 
     

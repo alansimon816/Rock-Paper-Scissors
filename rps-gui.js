@@ -1,9 +1,23 @@
 const ROCK = document.querySelector('#rock')
 const PAPER = document.querySelector('#paper')
 const SCISSORS = document.querySelector('#scissors')
+const startBtn = document.querySelector("#start-button")
 
 // returns a random integer between min (inclusive) and max (exclusive)
 let getRandom = (min, max) => ~~(Math.random() * (max - min) + min)
+
+// plays an animation upon click
+function playClickAnimation(e) {
+    button.classList.add('playing')
+}
+
+startBtn.addEventListener('click', changeScreen)
+startBtn.addEventListener('click', playGame)
+
+function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    this.classList.remove('playing'); //this refers to the button element calling addEventListener
+} 
 
 // simulates a computer playing rock paper scissors
 function computerPlay() {
@@ -14,18 +28,8 @@ function computerPlay() {
     }
 }
 
-// plays an animation upon click
-function playClickAnimation(e) {
-    button.classList.add('playing')
-}
-
-function removeTransition(e) {
-    if (e.propertyName !== 'transform') return;
-    this.classList.remove('playing'); //this refers to the button element calling addEventListener
-} 
-
   // simulates a round of rock, paper, scissors and determines if user won or lost
-  function determineRound(computerSelection) {
+function determineRound(computerSelection) {
     if (computerSelection == 'Rock' && button.id === 'scissors') {
         return 'You lose the round! Rock beats scissors' 
     } else if (computerSelection == 'Scissors' && button.id === 'paper') {
@@ -43,9 +47,19 @@ function removeTransition(e) {
     }     
 }
 
+function changeScreen () {
+    startScreen = document.querySelector('#start-screen')
+    game = document.querySelector('#game')
+    startScreen.style.visibility = 'hidden'
+    game.style.visibility = 'visible'
+}
+
+
 /* simulates 5 rounds of rock, paper, scissors between the computer and the user.
-   The winner is whoever has won the most rounds by the end of the final round. */
-function game() {
+   The winner is whoever has won the most rounds by the end of the final round.
+   
+   We want this function to be executed when the Start Game button is clicked*/
+function playGame() {
     let roundResult, playerSelection, computerSelection, playerScore = 0, computerScore = 0, roundCount = 0
     const buttons = document.querySelectorAll('button')
 
@@ -64,5 +78,3 @@ function game() {
 
     // console.log(playerScore > computerScore ? 'You win the game!' : 'You lose the game!')
 }
-
-// game()
