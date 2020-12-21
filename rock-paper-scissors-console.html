@@ -8,27 +8,26 @@
     </head>
 
     <body>
-        <div id="start-screen" class ="vertical-center fill">
-            <p>Rock, Paper, Scissors</p>
-            <button id="start-button">Start Game</button>   
-        </div>
-
-        <div id ="game" class ="vertical-center fill">
-            <label id = "prompt" for="game-buttons">Choose rock, paper, or scissors.</label>
-            <div class="center" id="game-buttons">
-                <button class = "children" id="rock">
-                    <img src="images/rock.png" alt="rock"/>
-                </button>
-                <button class = "children" id="paper">
-                    <img src="images/paper.png" alt="paper"/>
-                </button>
-                <button class = "children" id="scissors">
-                    <img src="images/scissors.png" alt="scissors"/>
-                </button>
+        <div id="base">
+            <div id="start-screen">
+                <p>Rock, Paper, Scissors</p>
+                <button id="start-button">Start Game</button>   
             </div>
-        </div> 
+
+            <div class="main" id ="game">
+                <div id="game-buttons-container">
+                    <button class="game-buttons" id="rock">Rock</button>
+                    <button class="game-buttons" id="paper">Paper</button>
+                    <button class="game-buttons" id="scissors">Scissors</button>
+                </div>
+                <label id = "prompt" for="game-buttons-container">Choose rock, paper, or scissors.</label>
+            </div> 
+    
+            <div id="end-screen">
+                <p id="end-text">placeholder text</p>
+                <button id="start-button">Play Again</button>
+            </div>
+        </div>
         <script src = "rps-gui.js"> </script>
     </body>
-
-    
 </html>
