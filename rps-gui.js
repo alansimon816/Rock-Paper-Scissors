@@ -3,7 +3,7 @@ const PAPER = document.querySelector('#paper')
 const SCISSORS = document.querySelector('#scissors')
 const startBtn = document.querySelector("#start-button")
 
-let playerScore = 0, computerScore = 0, roundCount = 0
+let playerScore = 0, computerScore = 0
 
 initializeGame()
 
@@ -20,11 +20,10 @@ function computerPlay() {
     }
 }
 
-/* simulates 5 rounds of rock, paper, scissors between the computer and the user.
-   The winner is whoever has won the most rounds by the end of the final round.
-   this function to be executed when the Start Game button on the start-screen is
-   clicked. At the end of 5 rounds, an end-game screen is displayed with results of
-   game and an option to play again. */
+/* Simulates the game of rock, paper, scissors between the computer and the user.
+   Whoever wins 3 rounds first, wins the game. This function is to be executed when 
+   the Start Game button on the start-screen is clicked. At the end of 5 rounds, 
+   an end-game screen is displayed with results of game and an option to play again. */
 function playGame(e) {
     computerSelection = computerPlay()
     console.log(this.id)
@@ -47,14 +46,14 @@ function playGame(e) {
 
     if (!roundResult.match(/draw/)) {
         roundResult.match(/win/) ? playerScore++ : computerScore++
-        roundCount++
     }
 
     console.log(roundResult)
-    displayRoundResult(roundResult, roundCount)
+    displayRoundResult(roundResult, playerScore, computerScore)
     console.log('Player: ' + playerScore + '     CPU: ' + computerScore) 
+    displayScores(playerScore, computerScore)
 
-    if (roundCount === 5) {
+    if (playerScore === 3 || computerScore === 3) {
         console.log(gameResult = (playerScore > computerScore) ? 'You win the game!' : 'You lose the game!')
         document.getElementById("end-text").textContent = gameResult
         // Now, hide game screen and go to new screen with Win/Loss message!
@@ -68,11 +67,12 @@ function playGame(e) {
 }
 
 // temporarily displays result of round on screen
-function displayRoundResult(roundResult, roundCount) {
+function displayRoundResult(roundResult, playerScore, computerScore) {
     let para = document.createElement("p")
     let node = document.createTextNode(roundResult);
-    para.appendChild(node)
     let elem = document.getElementById("round-result")
+
+    para.appendChild(node)
     elem.appendChild(para)
 
     game.style.visibility = 'hidden'
@@ -81,16 +81,32 @@ function displayRoundResult(roundResult, roundCount) {
     setTimeout(function() {
         window['round-result'].style.visibility = 'hidden'
         para.remove()
-        if (roundCount < 5)
+        if (playerScore < 3 && computerScore < 3)
             game.style.visibility = 'visible'
      }, 1000)
+}
 
-     
+// Displays number of round wins for player and computer
+function displayScores(playerScore, computerScore) {
+    displayPlayerScore(playerScore)
+    displayComputerScore(computerScore)
+}
+
+// Displays number of round wins for player
+function displayPlayerScore(score) {
+    document.getElementById("player-score").textContent = "You: " + score
+}
+
+// Displays number of round wins for computer
+function displayComputerScore(score) {
+    document.getElementById("computer-score").textContent = "PC: " + score
 }
 
 // resets game by setting variables back to 0
 function resetGame(e) {
-    playerScore = 0, computerScore = 0, roundCount = 0
+    playerScore = 0, computerScore = 0
+    document.getElementById("player-score").textContent = "You: 0"
+    document.getElementById("computer-score").textContent = "PC: 0"
     window['end-screen'].style.visibility = 'hidden'
     game.style.visibility = 'visible'
 }

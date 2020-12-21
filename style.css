@@ -2,10 +2,6 @@
     box-sizing: border-box;
 }
 
-#base {
-
-}
-
 .main {
     position: relative;
     top: -300px;
@@ -35,9 +31,9 @@ label {
 }
 
 p {
-    color: white;
+    /* color: white;
     outline-color: black;
-    text-shadow: rgb(0, 0, 0) 1px 0 10px;
+    text-shadow: rgb(0, 0, 0) 1px 0 10px; */
     position: absolute;
     display: block;
     transform: translateY(-30%);
@@ -47,6 +43,14 @@ p {
     text-align: center;
     font-size: 140px;
 }
+
+p:not(.score-labels) {
+    color: white;
+    outline-color: black;
+    text-shadow: rgb(0, 0, 0) 1px 0 10px;
+}
+
+
 
 #start-button, #restart-button {
     outline:none;
@@ -80,4 +84,22 @@ p {
 
 #round-result {
     visibility: hidden;
+}
+
+#player-container, #computer-container {
+    position: relative;
+    bottom:750px;
+}
+
+#player-container {
+    right:400px;
+}
+
+#computer-container {
+    left:400px;
+}
+
+#player-score, #computer-score {
+    font-size:80px;
+    color: blueviolet;
 }
