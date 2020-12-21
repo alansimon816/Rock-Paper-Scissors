@@ -5,13 +5,13 @@ const startBtn = document.querySelector("#start-button")
 
 let playerScore = 0, computerScore = 0, roundCount = 0
 
+initializeGame()
+
 // returns a random integer between min (inclusive) and max (exclusive)
 let getRandom = (min, max) => ~~(Math.random() * (max - min) + min)
 
-startBtn.addEventListener('click', changeScreen)
-startBtn.addEventListener('click', playGame)
-
-// simulates a computer playing rock paper scissors
+// simulates a computer playing rock paper scissors.
+// Computer randomly chooses rock, paper, or scissors.
 function computerPlay() {
     switch (getRandom(1,4)) {
         case 1: return 'Rock'
@@ -20,8 +20,12 @@ function computerPlay() {
     }
 }
 
-// simulates a round of rock, paper, scissors and determines if user won or lost
-function determineRound(e) {
+/* simulates 5 rounds of rock, paper, scissors between the computer and the user.
+   The winner is whoever has won the most rounds by the end of the final round.
+   this function to be executed when the Start Game button on the start-screen is
+   clicked. At the end of 5 rounds, an end-game screen is displayed with results of
+   game and an option to play again. */
+function playGame(e) {
     computerSelection = computerPlay()
     console.log(this.id)
     let roundResult, gameResult
@@ -39,20 +43,56 @@ function determineRound(e) {
         roundResult = 'You win the round! Scissors beats paper'
     } else {
         roundResult = 'The round is a draw!'
-        console.log(roundResult)
-        return
-    } 
-    roundResult.match(/win/) ? playerScore++ : computerScore++  
+    }
+
+    if (!roundResult.match(/draw/)) {
+        roundResult.match(/win/) ? playerScore++ : computerScore++
+        roundCount++
+    }
+
     console.log(roundResult)
+    displayRoundResult(roundResult, roundCount)
     console.log('Player: ' + playerScore + '     CPU: ' + computerScore) 
-    roundCount++
+
     if (roundCount === 5) {
         console.log(gameResult = (playerScore > computerScore) ? 'You win the game!' : 'You lose the game!')
         document.getElementById("end-text").textContent = gameResult
         // Now, hide game screen and go to new screen with Win/Loss message!
         game.style.visibility = 'hidden'
-        window['end-screen'].style.visibility = 'visible'
+        setTimeout(function() {
+            window['end-screen'].style.visibility = 'visible'
+            restartButton = document.querySelector('#restart-button')
+            restartButton.addEventListener('click', resetGame)
+         }, 1000)
     }  
+}
+
+// temporarily displays result of round on screen
+function displayRoundResult(roundResult, roundCount) {
+    let para = document.createElement("p")
+    let node = document.createTextNode(roundResult);
+    para.appendChild(node)
+    let elem = document.getElementById("round-result")
+    elem.appendChild(para)
+
+    game.style.visibility = 'hidden'
+    window['round-result'].style.visibility = 'visible'
+
+    setTimeout(function() {
+        window['round-result'].style.visibility = 'hidden'
+        para.remove()
+        if (roundCount < 5)
+            game.style.visibility = 'visible'
+     }, 1000)
+
+     
+}
+
+// resets game by setting variables back to 0
+function resetGame(e) {
+    playerScore = 0, computerScore = 0, roundCount = 0
+    window['end-screen'].style.visibility = 'hidden'
+    game.style.visibility = 'visible'
 }
 
 // Changes splash screen to game screen with game buttons
@@ -64,11 +104,11 @@ function changeScreen () {
 }
 
 
-/* simulates 5 rounds of rock, paper, scissors between the computer and the user.
-   The winner is whoever has won the most rounds by the end of the final round.
-   We want this function to be executed when the Start Game button is clicked*/
-function playGame() {
-    const buttons = document.querySelectorAll('button')
+// initializes the game by adding an event listener to the start button
+// as well as adding event listeners to the game buttons
+function initializeGame() {
+    const startBtn = document.querySelector("#start-button")
+    startBtn.addEventListener('click', changeScreen)
     const game_buttons = document.querySelectorAll('.game-buttons')
-    game_buttons.forEach(button => button.addEventListener('click', determineRound))
+    game_buttons.forEach(button => button.addEventListener('click', playGame))
 }

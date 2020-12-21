@@ -48,7 +48,7 @@ p {
     font-size: 140px;
 }
 
-#start-button {
+#start-button, #restart-button {
     outline:none;
     border-radius:25%;
     background-color: rgb(231, 231, 231);
@@ -75,5 +75,9 @@ p {
 }
 
 #end-screen {
+    visibility: hidden;
+}
+
+#round-result {
     visibility: hidden;
 }
