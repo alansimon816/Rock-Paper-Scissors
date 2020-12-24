@@ -3,42 +3,38 @@
 <html>
     <head>
         <meta charset = "UTF-8">
-        <title>Rock Paper Scissors</title>
         <link rel ="stylesheet" href="style.css">
     </head>
 
     <body>
-        <div id="base">
-            <div id="start-screen">
-                <p>Rock, Paper, Scissors</p>
-                <button id="start-button">Start Game</button>   
+        <div id="start-screen">
+            <p id="title">Rock, Paper, Scissors</p>
+            <button id="start-button">Start Game</button>   
+        </div>
+
+        <div id="game">
+            <div class="score-container">
+                <p class ="score-labels" id="player-score">You: 0</p>
+                <p class ="score-labels" id="computer-score">PC: 0</p>
             </div>
 
-            <div class="main" id ="game">
-                <div id="game-buttons-container">
-                    <button class="game-buttons" id="rock">Rock</button>
-                    <button class="game-buttons" id="paper">Paper</button>
-                    <button class="game-buttons" id="scissors">Scissors</button>
-                </div >
-                <div id="player-container">
-                    <p class ="score-labels" id="player-score">You: 0</p>
-                </div>
-                <div id="computer-container">
-                    <p class ="score-labels" id="computer-score">PC: 0</p>
-                </div>
-            
-                </p>
-                <label id = "prompt" for="game-buttons-container">Choose rock, paper, or scissors.</label>
-            </div>
-            
-            <div id="round-result">
-            </div>
-    
-            <div id="end-screen">
-                <p id="end-text">placeholder text</p>
-                <button id="restart-button">Play Again</button>
-            </div>
+            <p id = "prompt">Choose rock, paper, or scissors.</p>
+
+            <div id="game-inputs-container">
+                <input class="game-inputs" type="image" id="rock" src="images/rock.png" />
+                <input class="game-inputs" type="image" id="paper" src="images/paper.png" />
+                <input class="game-inputs" type="image" id="scissors" src="images/scissors.png" />
+            </div >
         </div>
+        
+        <div id="round-result">
+        </div>
+
+        <div id="end-screen">
+            <p id="end-text">placeholder text</p>
+            <button id="restart-button">Play Again</button>
+        </div>
+
         <script src = "rps-gui.js"> </script>
     </body>
 </html>

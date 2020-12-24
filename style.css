@@ -1,10 +1,7 @@
-* {
+*, *::before, *::after {
     box-sizing: border-box;
-}
-
-.main {
-    position: relative;
-    top: -300px;
+    margin: 0;
+    padding: 0;
 }
 
 #start-screen, label, div {
@@ -12,52 +9,36 @@
 }
 
 body {
-    overflow: hidden; /*Hide scrollbars*/ 
+    overflow: hidden; 
+    height: 100vh;
+    width: 100vw;
     background-color: #cfdfff;
 }
 
 #start-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
+    width: 100vw;
 }
 
-#game-buttons-container {
-    text-align: center;
+#start-screen, #game, #round-result, #end-screen {
+    position:absolute;
+
 }
 
-label {
-    display: block;
-    text-align: center;
-    font-size: 100px;
+#title {
+    
 }
-
-p {
-    /* color: white;
-    outline-color: black;
-    text-shadow: rgb(0, 0, 0) 1px 0 10px; */
-    position: absolute;
-    display: block;
-    transform: translateY(-30%);
-    top: 30%;
-    left:10%;
-    right:10%;
-    text-align: center;
-    font-size: 140px;
-}
-
-p:not(.score-labels) {
-    color: white;
-    outline-color: black;
-    text-shadow: rgb(0, 0, 0) 1px 0 10px;
-}
-
-
 
 #start-button, #restart-button {
-    outline:none;
     border-radius:25%;
     background-color: rgb(231, 231, 231);
     width: 250px;
     height:100px;
+    justify-content: center;
+    text-align: center;
     transform: translateY(-70%);;
     position:absolute;
     left: 50%;
@@ -68,38 +49,76 @@ p:not(.score-labels) {
     font-size: 40px;
 }
 
+p {
+    font-size: 140px;
+}
+
+p:not(.score-labels) {
+    color: white;
+    outline-color: black;
+    text-shadow: rgb(0, 0, 0) 1px 0 10px;
+}
+
 #game {
-    height: 100%;
-    visibility: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+#game, #round-result, #end-screen {
+    height: 100vh;
+    width: 100vw;
 }
 
 #prompt {
     position: relative;
-    bottom:300px
+    font-size: 100px;
+    top:25%;
+    text-align: center;
 }
 
-#end-screen {
-    visibility: hidden;
-}
-
-#round-result {
-    visibility: hidden;
-}
-
-#player-container, #computer-container {
+#game-inputs-container {
     position: relative;
-    bottom:750px;
+    top:30%;
+    left: 25%;
 }
 
-#player-container {
-    right:400px;
+#game {
+    visibility: hidden;
 }
 
-#computer-container {
-    left:400px;
+#round-result, #end-screen {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    text-align: center;
+    visibility: hidden;
+}
+
+.score-container {
+    width: 100vw;
+    display: flex;
+    justify-content:center;
+    align-items:flex-start;
+}
+
+.score-labels {
+    flex-grow: 1; 
+    position: inline;
+}
+
+#player-score {
+    text-align: left;
+}
+
+#computer-score {
+    text-align: right;
 }
 
 #player-score, #computer-score {
     font-size:80px;
     color: blueviolet;
+}
+
+#rock, #scissors, #paper {
+    width: 300px;
 }

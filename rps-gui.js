@@ -125,6 +125,6 @@ function changeScreen () {
 function initializeGame() {
     const startBtn = document.querySelector("#start-button")
     startBtn.addEventListener('click', changeScreen)
-    const game_buttons = document.querySelectorAll('.game-buttons')
+    const game_buttons = document.querySelectorAll('.game-inputs')
     game_buttons.forEach(button => button.addEventListener('click', playGame))
 }
