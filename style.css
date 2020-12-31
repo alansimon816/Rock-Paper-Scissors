@@ -49,10 +49,12 @@ p:not(.score-labels) {
     color: white;
     outline-color: black;
     text-shadow: rgb(0, 0, 0) 1px 0 10px;
-    font-size: 140px;
+    font-size: 10vw;
 }
 
 #game {
+    display: flex;
+    flex-direction: column;
     height: 100vh;
     width: 100vw;
     visibility: hidden;
@@ -63,10 +65,16 @@ p:not(.score-labels) {
     width: 100vw;
 }
 
+#flex-container {
+    display:flex;
+    flex-direction: column;
+}
+
 #prompt {
     position: relative;
-    font-size: 100px;
-    top:25%;
+    font-size: 5vw;
+    top: 15%;
+    margin-bottom: 1%;
     text-align: center;
 }
 
@@ -74,7 +82,7 @@ p:not(.score-labels) {
     display:flex;
     justify-content:center;
     align-items: flex-end;
-    margin-top: 20%
+    margin-top: 10%
 }
 
 #round-result, #end-screen {
@@ -109,10 +117,11 @@ p:not(.score-labels) {
 }
 
 #player-score, #computer-score {
-    font-size:80px;
+    font-size: 5vw;
     color: blue;
 }
 
 #rock, #scissors, #paper {
-    width: 300px;
+    position: relative;
+    width: 20%;
 }
