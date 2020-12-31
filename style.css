@@ -17,8 +17,8 @@ body {
 
 #start-screen {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
     height: 100vh;
     width: 100vw;
 }
@@ -32,15 +32,15 @@ body {
     border-radius:25%;
     background-color: rgb(231, 231, 231);
     width: 250px;
-    height:100px;
+    height:15vh;
     justify-content: center;
     text-align: center;
-    transform: translateY(-70%);;
+    transform: translateY(-70%);
     position:absolute;
     left: 50%;
     right:50%;
     margin-left: -125px;
-    top: 90%;
+    top: 80%;
     text-align: center;
     font-size: 40px;
 }
